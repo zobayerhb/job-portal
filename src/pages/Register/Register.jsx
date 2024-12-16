@@ -1,16 +1,36 @@
 import Lottie from "lottie-react";
 import lottieRegiAni from "../../assets/register.json";
+import { useState } from "react";
 
 const Register = () => {
+  const [error, setError] = useState("");
+
   const handleRegisterForm = (e) => {
     e.preventDefault();
+
+    setError("");
 
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).+$/;
+
+    // password validation
+    if (password.length < 6) {
+      setError("Password must be longer 6 characters");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password should be at least one uppercase letter and one number"
+      );
+      return;
+    }
     console.log(name, email, password);
   };
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -60,6 +80,7 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
           </form>
+          {error && <p className="ml-8 text-red-500 mb-4">{error}</p>}
         </div>
       </div>
     </div>
