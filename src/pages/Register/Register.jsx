@@ -1,3 +1,6 @@
+import Lottie from "lottie-react";
+import lottieRegiAni from "../../assets/register.json";
+
 const Register = () => {
   const handleRegisterForm = (e) => {
     e.preventDefault();
@@ -11,7 +14,9 @@ const Register = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left"></div>
+        <div className="text-center lg:text-left w-96">
+          <Lottie animationData={lottieRegiAni}></Lottie>
+        </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <h1 className="text-3xl font-bold ml-8 mt-4">Register now!</h1>
           <form onSubmit={handleRegisterForm} className="card-body">
