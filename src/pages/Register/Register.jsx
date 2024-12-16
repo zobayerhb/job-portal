@@ -1,8 +1,11 @@
 import Lottie from "lottie-react";
 import lottieRegiAni from "../../assets/register.json";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  
   const [error, setError] = useState("");
 
   const handleRegisterForm = (e) => {
@@ -29,6 +32,10 @@ const Register = () => {
       return;
     }
     console.log(name, email, password);
+
+    createUser(email, password).then((result) => {
+      console.log(result.user);
+    });
   };
 
   return (
