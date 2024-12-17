@@ -2,10 +2,11 @@ import Lottie from "lottie-react";
 import lottieRegiAni from "../../assets/register.json";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
+import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
-  
+
   const [error, setError] = useState("");
 
   const handleRegisterForm = (e) => {
@@ -87,6 +88,7 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
           </form>
+          <SocialLogin></SocialLogin>
           {error && <p className="ml-8 text-red-500 mb-4">{error}</p>}
         </div>
       </div>
