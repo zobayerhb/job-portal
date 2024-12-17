@@ -1,5 +1,13 @@
+import Footer from "../Shared/Footer";
+import Banner from "./Banner";
+
 const Home = () => {
-  return <div>this is home</div>;
+  return (
+    <div>
+      <Banner></Banner>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Home;
