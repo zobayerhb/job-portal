@@ -2,10 +2,14 @@ import Lottie from "lottie-react";
 import lottieRegiAni from "../../assets/register.json";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,14 +17,17 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    const from = location?.state || "/";
+
     setError("");
 
     userLogin(email, password)
       .then((result) => {
-        console.log("success",result.user);
+        console.log("success", result.user);
+        navigate(from);
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
   return (

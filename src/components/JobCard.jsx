@@ -1,7 +1,9 @@
 import { CiLocationOn } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     company_logo,
@@ -30,7 +32,7 @@ const JobCard = ({ job }) => {
           <div className="flex flex-wrap gap-2">
             {requirements.map((requ, index) => (
               <button
-                key={requ.index}
+                key={index}
                 className="border-[1px] border-blue-400 rounded-md px-5 py-2"
               >
                 {requ}
@@ -43,9 +45,11 @@ const JobCard = ({ job }) => {
                 $ {salaryRange.min} - {salaryRange.max} {salaryRange.currency}
               </p>
             </div>
-            <button className="border-[1px] py-3 px-6 rounded-md font-semibold">
-              Apply
-            </button>
+            <Link to={`/jobs/${_id}`}>
+              <button className="border-[1px] py-3 px-6 rounded-md font-semibold">
+                Apply
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import SectionHeader from "../../components/SectionHeader";
-import Footer from "../Shared/Footer";
 import Banner from "./Banner";
 import Jobs from "./Jobs";
 
@@ -11,7 +10,6 @@ const Home = () => {
         <SectionHeader></SectionHeader>
       </div>
       <Jobs></Jobs>
-      <Footer></Footer>
     </div>
   );
 };

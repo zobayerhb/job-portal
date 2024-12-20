@@ -5,7 +5,7 @@ import logo from '../../assets/logo.png'
 
 const Navbar = () => {
   const { users, userSignOut } = useContext(AuthContext);
-  console.log(users);
+  // console.log(users);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -13,7 +13,7 @@ const Navbar = () => {
         alert("user sign out successfully");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
 

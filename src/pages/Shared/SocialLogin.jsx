@@ -7,7 +7,7 @@ const SocialLogin = () => {
   const handleSocialLogin = () => {
     socialLogin()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
       })
       .catch((error) => {
         console.log(error);

@@ -3,11 +3,12 @@ import lottieRegiAni from "../../assets/register.json";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import SocialLogin from "../Shared/SocialLogin";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
-
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegisterForm = (e) => {
     e.preventDefault();
@@ -35,7 +36,8 @@ const Register = () => {
     console.log(name, email, password);
 
     createUser(email, password).then((result) => {
-      console.log(result.user);
+      // console.log(result.user);
+      navigate("/");
     });
   };
 
