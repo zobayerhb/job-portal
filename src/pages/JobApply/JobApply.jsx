@@ -1,11 +1,41 @@
+import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+
 const JobApply = () => {
+  const { id } = useParams();
+  const { users } = useAuth();
+
   const handelJobApplyForm = (e) => {
     e.preventDefault();
     const form = e.target;
     const linkedIn = form.linkedIn.value;
     const github = form.github.value;
+    const resume = form.resume.value;
 
-    console.log(linkedIn, github);
+    const jobApplication = {
+      job_id: id,
+      applicant_email: users.email,
+      linkedIn,
+      github,
+      resume,
+    };
+
+    fetch("http://localhost:5000/job-applications", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(jobApplication),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+    // console.log(linkedIn, github, resume);
   };
 
   return (
@@ -41,6 +71,18 @@ const JobApply = () => {
                 type="url"
                 name="github"
                 placeholder="Github URL"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Resume URL</span>
+              </label>
+              <input
+                type="url"
+                name="resume"
+                placeholder="Resume URL"
                 className="input input-bordered"
                 required
               />
