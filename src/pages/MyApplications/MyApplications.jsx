@@ -31,7 +31,7 @@ const MyApplications = () => {
             if (data.isConfirmed) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your Coffee has been deleted.",
+                text: "Your Job has been deleted.",
                 icon: "success",
               });
             }

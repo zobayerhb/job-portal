@@ -1,4 +1,11 @@
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+// import { useNavigate } from "react-router-dom";
+
 const AddJob = () => {
+  const { users } = useAuth();
+//   const navigate = useNavigate();
+
   const handleJobform = (e) => {
     e.preventDefault();
 
@@ -7,11 +14,33 @@ const AddJob = () => {
     const data = Object.fromEntries(formData.entries());
     // console.log(data);
     const { min, max, currency, ...newJob } = data;
-    console.log(min, max, currency, newJob);
+    // console.log(min, max, currency, newJob);
     newJob.salaryRange = { min, max, currency };
+    newJob.requirements = newJob.requirements.split("\n");
+    newJob.responsibilities = newJob.responsibilities.split("\n");
     console.log(newJob);
+
+    fetch("http://localhost:5000/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully apply",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // navigate("/");
+      });
   };
-  
+
   return (
     <div>
       <h2 className="text-3xl">Post a new Job</h2>
@@ -47,7 +76,10 @@ const AddJob = () => {
           <label className="label">
             <span className="label-text">Job Type</span>
           </label>
-          <select className="select select-ghost w-full max-w-xs">
+          <select
+            defaultValue="Pick a Job type"
+            className="select select-ghost w-full max-w-xs"
+          >
             <option disabled>Pick a Job type</option>
             <option>Full-time</option>
             <option>Intern</option>
@@ -59,7 +91,10 @@ const AddJob = () => {
           <label className="label">
             <span className="label-text">Job Field</span>
           </label>
-          <select className="select select-ghost w-full max-w-xs">
+          <select
+            defaultValue="Pick a Job Field"
+            className="select select-ghost w-full max-w-xs"
+          >
             <option disabled>Pick a Job Field</option>
             <option>Engineering</option>
             <option>Marketing</option>
@@ -92,6 +127,7 @@ const AddJob = () => {
           </div>
           <div className="form-control">
             <select
+              defaultValue="Currency"
               name="currency"
               className="select select-ghost w-full max-w-xs"
             >
@@ -171,6 +207,7 @@ const AddJob = () => {
             <span className="label-text">HR Email</span>
           </label>
           <input
+            defaultValue={users?.email}
             type="text"
             name="hr_email"
             placeholder="HR Email"
