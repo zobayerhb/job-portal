@@ -33,7 +33,7 @@ const AddJob = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Successfully apply",
+          title: "Successfully Job Add",
           showConfirmButton: false,
           timer: 1500,
         });
