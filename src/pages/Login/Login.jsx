@@ -3,6 +3,7 @@ import lottieRegiAni from "../../assets/register.json";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
@@ -24,7 +25,16 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         console.log("success", result.user);
-        navigate(from);
+        const user = { email: email };
+        axios
+          .post(`http://localhost:5000/jwt`, user)
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+        // navigate(from);
       })
       .catch((error) => {
         // console.log(error.message);
