@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -41,6 +42,21 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
+
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => console.log("login data", res.data));
+      } else {
+        axios
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .then((res) => {
+            console.log("logout", res.data);
+          });
+      }
+
+      // put in the right position
       setLoading(false);
     });
 

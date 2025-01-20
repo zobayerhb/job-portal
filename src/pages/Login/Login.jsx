@@ -25,14 +25,7 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         console.log("success", result.user);
-        const user = { email: email };
-        axios
-          .post(`http://localhost:5000/jwt`, user, {withCredentials: true})
-          .then((res) => console.log(res.data))
-          .catch((error) => {
-            console.log(error.message);
-          });
-        // navigate(from);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
