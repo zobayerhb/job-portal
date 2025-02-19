@@ -10,7 +10,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+  // console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,11 +24,11 @@ const Login = () => {
 
     userLogin(email, password)
       .then((result) => {
-        console.log("success", result.user);
+        // console.log("success", result.user);
         navigate(from);
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
   return (

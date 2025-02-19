@@ -40,19 +40,21 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
+      // console.log(currentUser);
       setUser(currentUser);
 
       if (currentUser?.email) {
         const user = { email: currentUser.email };
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
-          .then((res) => console.log("login data", res.data));
+          .post("https://jobsportal-ten.vercel.app/jwt", user, { withCredentials: true })
+          .then((res) => {
+            // console.log("login data", res.data)
+          });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post("https://jobsportal-ten.vercel.app/logout", {}, { withCredentials: true })
           .then((res) => {
-            console.log("logout", res.data);
+            "logout", res.data;
           });
       }
 

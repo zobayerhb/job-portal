@@ -22,7 +22,7 @@ const JobApply = () => {
       resume,
     };
 
-    fetch("http://localhost:5000/job-applications", {
+    fetch("https://jobsportal-ten.vercel.app/job-applications", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const JobApply = () => {
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
 
     // console.log(linkedIn, github, resume);

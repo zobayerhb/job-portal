@@ -10,6 +10,7 @@ import MyApplications from "../pages/MyApplications/MyApplications";
 import AddJob from "../pages/AddJob/AddJob";
 import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
 import ViewApplications from "../pages/ViewApplications/ViewApplications";
+import AllJob from "../pages/AllJob/AllJob";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://jobsportal-ten.vercel.app/jobs/${params.id}`),
+      },
+      {
+        path: "/all-job",
+        element: (
+          <PrivateRoute>
+            <AllJob></AllJob>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobApply/:id",
@@ -79,7 +88,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
+          fetch(
+            `https://jobsportal-ten.vercel.app/job-applications/jobs/${params.job_id}`
+          ),
       },
     ],
   },

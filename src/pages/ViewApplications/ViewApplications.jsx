@@ -4,12 +4,12 @@ const ViewApplications = () => {
   const applications = useLoaderData();
 
   const handleStatus = (e, id) => {
-    console.log(e.target.value, id);
+    // console.log(e.target.value, id);
     const data = {
         status: e.target.value,
     };
 
-    fetch(`http://localhost:5000/job-applications/${id}`, {
+    fetch(`https://jobsportal-ten.vercel.app/job-applications/${id}`, {
       method: "PATCH",
       body: {
         "content-type": "application/json",
@@ -18,7 +18,7 @@ const ViewApplications = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   };
   return (

@@ -10,12 +10,12 @@ const MyApplications = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    // fetch(`http://localhost:5000/job-application?email=${users.email}`)
+    // fetch(`https://jobsportal-ten.vercel.app/job-application?email=${users.email}`)
     //   .then((res) => res.json())
     //   .then((data) => setJobs(data));
 
     // axios
-    //   .get(`http://localhost:5000/job-application?email=${users.email}`, {
+    //   .get(`https://jobsportal-ten.vercel.app/job-application?email=${users.email}`, {
     //     withCredentials: true,
     //   })
     //   .then((res) => setJobs(res.data));
@@ -23,7 +23,7 @@ const MyApplications = () => {
     axiosSecure
       .get(`/job-application?email=${users.email}`)
       .then((res) => setJobs(res.data));
-      
+
   }, [users.email]);
 
   const handleJobDelete = (_id) => {
@@ -37,7 +37,7 @@ const MyApplications = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/job-application?email=${_id}`, {
+        fetch(`https://jobsportal-ten.vercel.app/job-application?email=${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
